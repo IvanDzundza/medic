@@ -78,7 +78,7 @@ public class PatientList {
     public List<Patient> filterByMedicalCartNumberIn() {
         int start;
         int end;
-        System.out.println("Введіть початкове значення:");
+        System.out.println("Фільтр по медичній карті. Введіть початкове значення:");
         Scanner scanner = new Scanner(System.in);
         start = scanner.nextInt();
         System.out.println("Введіть кінцеве значення:");

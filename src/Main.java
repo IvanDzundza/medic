@@ -10,6 +10,13 @@ public class Main {
             System.out.println(patient);
         }
 
+        DoctorList doctorList = new DoctorList();
+        doctorList.addRandomDoctors(10);
+        System.out.println(doctorList);
+        for (Doctor doctor : doctorList.filterBySpecialization()) {
+            System.out.println(doctor);
+        }
+
         for (Patient patient : patientList.filterByMedicalCartNumberIn()) {
             System.out.println(patient);
         }

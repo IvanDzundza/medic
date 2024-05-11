@@ -1,9 +1,38 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 public class DoctorList {
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Doctor doctor : doctors) {
+            stringBuilder.append(doctor).append(",\n");
+        }
+        return "DoctorList{" +
+                "doctors=" + stringBuilder +
+                '}';
+    }
+
     LinkedList<Doctor> doctors = new LinkedList<Doctor>();
+
+    public List<Doctor> filterBySpecialization(String specializations) {
+        List<Doctor> result = new LinkedList<>();
+        for (Doctor doctor : doctors) {
+            if (doctor.getSpecialization().equalsIgnoreCase(specializations)) {
+                result.add(doctor);
+            }
+        }
+
+        return result;
+    }
+
+    public List<Doctor> filterBySpecialization() {
+        String specialization;
+        System.out.println("Введіть спеціальність доктора:");
+        Scanner scanner = new Scanner(System.in);
+        specialization = scanner.nextLine();
+        return filterBySpecialization(specialization);
+    }
 
     public void addRandomDoctors(int numberOfDoctors) {
         Random random = new Random();
