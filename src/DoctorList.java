@@ -2,6 +2,9 @@ import java.util.*;
 
 public class DoctorList {
 
+    private List <Doctor> doctors = new LinkedList<Doctor>();
+
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -13,7 +16,6 @@ public class DoctorList {
                 '}';
     }
 
-    LinkedList<Doctor> doctors = new LinkedList<Doctor>();
 
     public List<Doctor> filterBySpecialization(String specializations) {
         List<Doctor> result = new LinkedList<>();

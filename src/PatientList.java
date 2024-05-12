@@ -1,9 +1,25 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class PatientList {
+
+    private final List<Patient> patients = new ArrayList<>();
+
+    public int getIndex(Patient patient) {
+        return patients.indexOf(patient);
+    }
+
+    public void addPatient (Patient patient) {
+        patients.add(patient);
+    }
+
+    public void removeFromList(Patient patient) {
+        patients.remove(patient);
+    }
+
+    public void removeFromListBIndex(int index) {
+        patients.remove(index);
+    }
+
 
     @Override
     public String toString() {
@@ -15,8 +31,6 @@ public class PatientList {
                 "patients=" + stringBuilder +
                 '}';
     }
-
-    private List<Patient> patients = new ArrayList<Patient>();
 
 
     public List<Patient> filterByDiagnosis(String diagnosis) {
@@ -48,7 +62,7 @@ public class PatientList {
         }
     }
 
-    public List <Patient> filterPatientsWithInsurance() {
+    public List<Patient> filterPatientsWithInsurance() {
         List<Patient> result = new ArrayList<>();
 
         for (Patient patient : patients) {
@@ -61,7 +75,7 @@ public class PatientList {
 
     public List<Patient> filterByMedicalCartNumberIn(int start, int end) {
         int medicalCartNumber;
-        ArrayList<Patient> result = new ArrayList<Patient>();
+        ArrayList<Patient> result = new ArrayList<>();
 
 
         for (Patient patient : patients) {
@@ -85,4 +99,4 @@ public class PatientList {
         end = scanner.nextInt();
         return filterByMedicalCartNumberIn(start, end);
     }
-    };
+}

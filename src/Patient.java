@@ -1,7 +1,22 @@
+import java.util.Objects;
+
 public class Patient extends Human implements Comparable <Patient> {
     private int numberMedicalCart;
     private boolean insurance;
     private String diagnosis;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return numberMedicalCart == patient.numberMedicalCart && insurance == patient.insurance && Objects.equals(diagnosis, patient.diagnosis);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numberMedicalCart, insurance, diagnosis);
+    }
 
     public Patient() {
 
