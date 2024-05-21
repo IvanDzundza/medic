@@ -8,12 +8,43 @@ public class PatientList {
         return patients.indexOf(patient);
     }
 
-    public void addPatient (Patient patient) {
+    public List<String> getUniqueLastNames() {
+        List<String> lastNames = new LinkedList<>();
+        for (Patient patient : patients) {
+            if (!lastNames.contains(patient.getLastname())) {
+                lastNames.add(patient.getLastname());
+            }
+        }
+        return lastNames;
+    }
+
+    public Set<String> getUniqueDiagnosis() {
+        Set<String> diagnosis = new HashSet<>();
+        for (Patient patient : patients) {
+            diagnosis.add(patient.getDiagnosis());
+        }
+        return diagnosis;
+    }
+
+    public Map <String, Integer> getMap() {
+        Map <String, Integer> map = new HashMap<>();
+        for (Patient patient : patients) {
+            if(map.containsKey(patient.getDiagnosis())){
+                map.replace(patient.getDiagnosis(), map.get(patient.getDiagnosis())+1);
+            } else {
+                map.put(patient.getDiagnosis(), 1);
+            }
+        }
+        return map;
+    }
+
+    public void addPatient(Patient patient) {
         patients.add(patient);
     }
 
     public void removeFromList(Patient patient) {
         patients.remove(patient);
+
     }
 
     public void removeFromListBIndex(int index) {

@@ -1,8 +1,19 @@
+import javax.print.Doc;
 import java.util.*;
 
 public class DoctorList {
 
     private List <Doctor> doctors = new LinkedList<Doctor>();
+
+    public List<String> getSpecializationUnique() {
+        List<String> specializatonUnique = new LinkedList<>();
+        for (Doctor doctor: doctors) {
+            if (!specializatonUnique.contains(Doctor.specializations)) {
+                specializatonUnique.add(Arrays.toString(Doctor.specializations));
+            }
+        }
+        return specializatonUnique;
+    }
 
 
     @Override
