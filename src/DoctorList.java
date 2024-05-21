@@ -26,7 +26,15 @@ public class DoctorList {
         return mapSpecialization;
     }
 
-
+    public Map <String, String> getMapSpecializationDoctor() {
+        Map <String, String> mapMapSpecializationListDoctor = new HashMap<>();
+        for (Doctor doctor : doctors) {
+            if(mapMapSpecializationListDoctor.containsKey(doctor.getSpecialization())){
+                mapMapSpecializationListDoctor.replace(doctor.getSpecialization(), doctor.getLastname());
+            }
+        }
+        return mapMapSpecializationListDoctor;
+    }
 
 
     @Override
