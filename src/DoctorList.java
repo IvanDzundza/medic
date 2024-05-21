@@ -15,17 +15,18 @@ public class DoctorList {
         return specializatonUnique;
     }
 
-    public Map <String, Integer> getMapSpecialization() {
-        Map <String, Integer> map = new HashMap<>();
+    public Map <Integer, String> getMapSpecialization() {
+        Map <Integer, String> mapSpecialization = new HashMap<>();
         for (Doctor doctor : doctors) {
-            if(map.containsKey(doctor.getSpecialization())){
-                map.replace(doctor.getSpecialization(), map.get(doctor.getSpecialization())+1);
-            } else {
-                map.put(doctor.getSpecialization(), 1);
+            if(mapSpecialization.containsKey(doctor.getSpecialization())){
+                mapSpecialization.replace(Integer.valueOf(mapSpecialization.get(doctor.getSpecialization())+1), doctor.getSpecialization());            } else {
+                mapSpecialization.put(1, doctor.getSpecialization());
             }
         }
-        return map;
+        return mapSpecialization;
     }
+
+
 
 
     @Override
