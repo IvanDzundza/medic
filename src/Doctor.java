@@ -1,14 +1,24 @@
 public class Doctor extends Human implements Comparable <Doctor>{
     private String specialization;
+    private boolean license;
 
     public Doctor() {
 
     }
 
 
-    public Doctor(int id, String lastname, String name, String fatherName, String adress, int telephone, String specialization) {
+    public Doctor(int id, String lastname, String name, String fatherName, String adress, int telephone, String specialization, boolean license) {
         super(id, lastname, name, fatherName, adress, telephone);
         this.specialization = specialization;
+        this.license = license;
+    }
+
+    public boolean isLicense() {
+        return license;
+    }
+
+    public void setLicense(boolean license) {
+        this.license = license;
     }
 
     public String getSpecialization() {
@@ -22,6 +32,7 @@ public class Doctor extends Human implements Comparable <Doctor>{
     @Override
     public String toString() {
         return "Doctor{" +
+                "license='" + license + '\'' +
                 "specialization='" + specialization + '\'' +
                 ", id=" + id +
                 ", lastname='" + lastname + '\'' +
