@@ -15,22 +15,27 @@ public class DoctorList {
         return specializatonUnique;
     }
 
-    public Map <Integer, String> getMapSpecialization() {
-        Map <Integer, String> mapSpecialization = new HashMap<>();
+    public Map <String, Integer> getMapSpecialization() {
+        Map <String, Integer> mapSpecialization = new HashMap<>();
         for (Doctor doctor : doctors) {
             if(mapSpecialization.containsKey(doctor.getSpecialization())){
-                mapSpecialization.replace(Integer.valueOf(mapSpecialization.get(doctor.getSpecialization())+1), doctor.getSpecialization());            } else {
-                mapSpecialization.put(1, doctor.getSpecialization());
+                mapSpecialization.replace(doctor.getSpecialization(), mapSpecialization.get(doctor.getSpecialization())+1);
+            } else {
+                mapSpecialization.put(doctor.getSpecialization(), 1);
             }
         }
         return mapSpecialization;
     }
 
-    public Map <String, String> getMapSpecializationDoctor() {
-        Map <String, String> mapMapSpecializationListDoctor = new HashMap<>();
+    public Map <String, List<Doctor>> getMapSpecializationDoctor() {
+        Map <String, List<Doctor>> mapMapSpecializationListDoctor = new HashMap<>();
         for (Doctor doctor : doctors) {
             if(mapMapSpecializationListDoctor.containsKey(doctor.getSpecialization())){
-                mapMapSpecializationListDoctor.replace(doctor.getSpecialization(), doctor.getLastname());
+                mapMapSpecializationListDoctor.get(doctor.getSpecialization()).add(doctor);
+            } else {
+                List <Doctor> list = new LinkedList<>();
+                list.add(doctor);
+                mapMapSpecializationListDoctor.put(doctor.getSpecialization(), list);
             }
         }
         return mapMapSpecializationListDoctor;
