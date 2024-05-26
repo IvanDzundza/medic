@@ -82,4 +82,8 @@ public class DoctorList {
         }
     }
 
+    public List<Doctor> getAll() {
+        return doctors;
+    }
+
 }
