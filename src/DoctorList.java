@@ -73,12 +73,18 @@ public class DoctorList {
         return result;
     }
 
+    public List<Doctor> filterBySpecializationByStream(String specializations) {
+        return doctors.stream()
+                .filter(doctor -> doctor.getSpecialization().equalsIgnoreCase(specializations))
+                .toList();
+    }
+
     public List<Doctor> filterBySpecialization() {
         String specialization;
         System.out.println("Введіть спеціальність доктора:");
         Scanner scanner = new Scanner(System.in);
         specialization = scanner.nextLine();
-        return filterBySpecialization(specialization);
+        return filterBySpecializationByStream(specialization);
     }
 
     public void addRandomDoctors(int numberOfDoctors) {

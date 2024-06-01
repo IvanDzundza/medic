@@ -10,12 +10,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<Product, Integer> maps = new HashMap<>();
-        maps.put(new Product("apple", BigDecimal.valueOf(55.50)), 5);
-        maps.put(new Product("orange", BigDecimal.valueOf(75.50)), 3);
-        maps.put(new Product("strawberry", BigDecimal.valueOf(80.00)), 15);
-        maps.forEach((product, pices) -> System.out.printf("%d %s %s \n", pices, product.getName(), product.getPrice().multiply(BigDecimal.valueOf(pices)).toString()));
-        // 5 apple = 277,50
+
+//        Map<Product, Integer> maps = new HashMap<>();
+//        maps.put(new Product("apple", BigDecimal.valueOf(55.50)), 5);
+//        maps.put(new Product("orange", BigDecimal.valueOf(75.50)), 3);
+//        maps.put(new Product("strawberry", BigDecimal.valueOf(80.00)), 15);
+//        maps.forEach((product, pices) -> System.out.printf("%d %s %s \n", pices, product.getName(), product.getPrice().multiply(BigDecimal.valueOf(pices)).toString()));
+//        // 5 apple = 277,50
 
         DoctorList doctorList = new DoctorList();
         doctorList.addRandomDoctors(10);
@@ -23,6 +24,10 @@ public class Main {
         Comparator<Doctor> lastNameComparator = (doctor1, doctor2) -> doctor1.getLastname().compareTo(doctor2.getLastname());
         Collections.sort(doctors, lastNameComparator);
         System.out.println(doctors);
+
+        System.out.println(doctorList.getSpecializationUniqueStream());
+        System.out.println(doctorList.filterBySpecialization());
+
         Comparator<Doctor> idComparator = (doctor1, doctor2) -> doctor1.getId().compareTo(doctor2.getId());
         Collections.sort(doctors, lastNameComparator.thenComparing(idComparator));
         System.out.println(doctors);
