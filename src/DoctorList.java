@@ -1,13 +1,14 @@
 import javax.print.Doc;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DoctorList {
 
-    private List <Doctor> doctors = new LinkedList<Doctor>();
+    private List<Doctor> doctors = new LinkedList<Doctor>();
 
     public List<String> getSpecializationUnique() {
         List<String> specializatonUnique = new LinkedList<>();
-        for (Doctor doctor: doctors) {
+        for (Doctor doctor : doctors) {
             if (!specializatonUnique.contains(Doctor.specializations)) {
                 specializatonUnique.add(Arrays.toString(Doctor.specializations));
             }
@@ -15,11 +16,18 @@ public class DoctorList {
         return specializatonUnique;
     }
 
-    public Map <String, Integer> getMapSpecialization() {
-        Map <String, Integer> mapSpecialization = new HashMap<>();
+    public List<String> getSpecializationUniqueStream() {
+        return doctors.stream()
+                .map(doctor -> doctor.getSpecialization())
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public Map<String, Integer> getMapSpecialization() {
+        Map<String, Integer> mapSpecialization = new HashMap<>();
         for (Doctor doctor : doctors) {
-            if(mapSpecialization.containsKey(doctor.getSpecialization())){
-                mapSpecialization.replace(doctor.getSpecialization(), mapSpecialization.get(doctor.getSpecialization())+1);
+            if (mapSpecialization.containsKey(doctor.getSpecialization())) {
+                mapSpecialization.replace(doctor.getSpecialization(), mapSpecialization.get(doctor.getSpecialization()) + 1);
             } else {
                 mapSpecialization.put(doctor.getSpecialization(), 1);
             }
@@ -27,13 +35,13 @@ public class DoctorList {
         return mapSpecialization;
     }
 
-    public Map <String, List<Doctor>> getMapSpecializationDoctor() {
-        Map <String, List<Doctor>> mapMapSpecializationListDoctor = new HashMap<>();
+    public Map<String, List<Doctor>> getMapSpecializationDoctor() {
+        Map<String, List<Doctor>> mapMapSpecializationListDoctor = new HashMap<>();
         for (Doctor doctor : doctors) {
-            if(mapMapSpecializationListDoctor.containsKey(doctor.getSpecialization())){
+            if (mapMapSpecializationListDoctor.containsKey(doctor.getSpecialization())) {
                 mapMapSpecializationListDoctor.get(doctor.getSpecialization()).add(doctor);
             } else {
-                List <Doctor> list = new LinkedList<>();
+                List<Doctor> list = new LinkedList<>();
                 list.add(doctor);
                 mapMapSpecializationListDoctor.put(doctor.getSpecialization(), list);
             }
