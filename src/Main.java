@@ -24,6 +24,7 @@ public class Main {
         Comparator<Doctor> lastNameComparator = (doctor1, doctor2) -> doctor1.getLastname().compareTo(doctor2.getLastname());
         Collections.sort(doctors, lastNameComparator);
         System.out.println(doctors);
+        System.out.println(doctorList.countDoctorsWithSpecializationByStream("Інтерн"));
 
         System.out.println(doctorList.getSpecializationUniqueStream());
         System.out.println(doctorList.filterBySpecialization());

@@ -23,6 +23,12 @@ public class DoctorList {
                 .collect(Collectors.toList());
     }
 
+    public long countDoctorsWithSpecializationByStream(String specializations) {
+        return doctors.stream()
+                .filter(doctor -> doctor.getSpecialization().equalsIgnoreCase(specializations))
+                .count();
+    }
+
     public Map<String, Integer> getMapSpecialization() {
         Map<String, Integer> mapSpecialization = new HashMap<>();
         for (Doctor doctor : doctors) {
