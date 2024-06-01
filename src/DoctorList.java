@@ -1,5 +1,8 @@
 import javax.print.Doc;
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 public class DoctorList {
 
@@ -13,6 +16,13 @@ public class DoctorList {
             }
         }
         return specializatonUnique;
+    }
+
+    public List<String> getSpecializationUniqueStream() {
+        return doctors.stream()
+                .map(doctor -> doctor.getSpecialization())
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     public Map <String, Integer> getMapSpecialization() {
@@ -82,4 +92,9 @@ public class DoctorList {
         }
     }
 
+
+    public List<Doctor> getAll() {
+        List<Doctor> resultList = doctors.subList(0, doctors.size() - 0);
+        return resultList;
+    }
 }
