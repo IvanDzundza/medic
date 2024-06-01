@@ -19,7 +19,7 @@ public abstract class Human {
         this.telephone = telephone;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
