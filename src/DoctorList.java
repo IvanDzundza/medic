@@ -87,11 +87,28 @@ public class DoctorList {
         return filterBySpecializationByStream(specialization);
     }
 
+    public List<Doctor> filterDoctorsWithLicense() {
+        List<Doctor> doctorsArrayList = new ArrayList<>();
+
+        for(Doctor doctor : doctors){
+            if(doctor.isLicense()){
+                doctorsArrayList.add(doctor);
+            }
+        } return doctorsArrayList;
+
+    }
+
+    public List<Doctor> filterDoctorsWithLicenseByStream() {
+        return doctors.stream()
+                .filter(doctor -> doctor.isLicense())
+                .toList();
+    }
+
     public void addRandomDoctors(int numberOfDoctors) {
         Random random = new Random();
 
         for (int i = 0; i < numberOfDoctors; i++) {
-            doctors.add(new Doctor(i, Human.lastNames[random.nextInt(Human.lastNames.length)], "Тарас", "Тарасович", "Мазепи", random.nextInt(999), Doctor.specializations[random.nextInt(Doctor.specializations.length)], true));
+            doctors.add(new Doctor(i, Human.lastNames[random.nextInt(Human.lastNames.length)], "Тарас", "Тарасович", "Мазепи", random.nextInt(999), Doctor.specializations[random.nextInt(Doctor.specializations.length)], random.nextBoolean()));
 
         }
     }

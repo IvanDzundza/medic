@@ -27,6 +27,9 @@ public class Main {
 
         System.out.println(doctorList.getSpecializationUniqueStream());
         System.out.println(doctorList.filterBySpecialization());
+        System.out.println(doctorList.filterDoctorsWithLicense());
+        System.out.println("----------------------");
+
 
         Comparator<Doctor> idComparator = (doctor1, doctor2) -> doctor1.getId().compareTo(doctor2.getId());
         Collections.sort(doctors, lastNameComparator.thenComparing(idComparator));
