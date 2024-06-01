@@ -104,6 +104,24 @@ public class DoctorList {
                 .toList();
     }
 
+    public List<Doctor> filterByDoctorTelephoneNumber (int start, int end) {
+        int telephoneNumber;
+        List<Doctor> doctorTelephone = new ArrayList<>();
+
+        for(Doctor doctor : doctors) {
+            telephoneNumber = doctor.getTelephone();
+            if(telephoneNumber > start && telephoneNumber < end){
+                doctorTelephone.add(doctor);
+            }
+        } return doctorTelephone;
+    }
+
+    public List<Doctor> filterByDoctorTelephoneNumberByStream (int start, int end) {
+        return doctors.stream()
+                .filter(doctor -> doctor.getTelephone() > start && doctor.getTelephone() < end)
+                .toList();
+    }
+
     public void addRandomDoctors(int numberOfDoctors) {
         Random random = new Random();
 
