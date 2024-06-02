@@ -10,6 +10,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+        PatientList patientList = new PatientList();
+        System.out.println(patientList.getPatientWithMaxNumberMedicalCartByStream().orElse(new Patient()));
+        System.out.println(patientList.getMaxNumberMedicalCartByStream().orElse(0));
+        patientList.getMaxNumberMedicalCartByStream().ifPresentOrElse(
+                number -> System.out.println(number),
+                () -> patientList.addRandomPatients(1));
+        patientList.getMaxNumberMedicalCartByStream().ifPresent(number -> System.out.println(number));
+        System.out.println(patientList.getPatientWithMaxNumberMedicalCartByStream().orElse(new Patient()));
+
+
 
 //        Map<Product, Integer> maps = new HashMap<>();
 //        maps.put(new Product("apple", BigDecimal.valueOf(55.50)), 5);

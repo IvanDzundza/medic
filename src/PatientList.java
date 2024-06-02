@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PatientList {
 
@@ -26,11 +27,17 @@ public class PatientList {
         return diagnosis;
     }
 
-    public Map <String, Integer> getMap() {
-        Map <String, Integer> map = new HashMap<>();
+    public Set<String> getUniqueDiagnosisByStream() {
+        return patients.stream()
+                .map(patient -> patient.getDiagnosis())
+                .collect(Collectors.toSet());
+    }
+
+    public Map<String, Integer> getMap() {
+        Map<String, Integer> map = new HashMap<>();
         for (Patient patient : patients) {
-            if(map.containsKey(patient.getDiagnosis())){
-                map.replace(patient.getDiagnosis(), map.get(patient.getDiagnosis())+1);
+            if (map.containsKey(patient.getDiagnosis())) {
+                map.replace(patient.getDiagnosis(), map.get(patient.getDiagnosis()) + 1);
             } else {
                 map.put(patient.getDiagnosis(), 1);
             }
@@ -104,6 +111,12 @@ public class PatientList {
         return result;
     }
 
+    public List<Patient> filterPatientsWithInsuranceByStream() {
+        return patients.stream()
+                .filter(patient -> patient.isInsurance())
+                .toList();
+    }
+
     public List<Patient> filterByMedicalCartNumberIn(int start, int end) {
         int medicalCartNumber;
         ArrayList<Patient> result = new ArrayList<>();
@@ -120,7 +133,21 @@ public class PatientList {
         return result;
     }
 
-    public List<Patient> filterByMedicalCartNumberIn() {
+    public Optional<Integer> getMaxNumberMedicalCartByStream() {
+        return patients.stream()
+                .map(patient -> patient.getNumberMedicalCart())
+                .max(Integer::compare);
+    }
+
+    public Optional<Patient> getPatientWithMaxNumberMedicalCartByStream() {
+        return patients.stream()
+                .max((o1, o2) -> Integer.compare(o1.getNumberMedicalCart(), o2.getNumberMedicalCart()));
+
+
+    }
+
+
+        public List<Patient> filterByMedicalCartNumberIn() {
         int start;
         int end;
         System.out.println("Фільтр по медичній карті. Введіть початкове значення:");
