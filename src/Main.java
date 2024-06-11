@@ -10,66 +10,78 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<Product, Integer> maps = new HashMap<>();
-        maps.put(new Product("apple", BigDecimal.valueOf(55.50)), 5);
-        maps.put(new Product("orange", BigDecimal.valueOf(75.50)), 3);
-        maps.put(new Product("strawberry", BigDecimal.valueOf(80.00)), 15);
-        maps.forEach((product, pices) -> System.out.printf("%d %s %s \n", pices, product.getName(), product.getPrice().multiply(BigDecimal.valueOf(pices)).toString()));
-        // 5 apple = 277,50
-
         DoctorList doctorList = new DoctorList();
         doctorList.addRandomDoctors(10);
-        List<Doctor> doctors = doctorList.getAll();
-        Comparator<Doctor> lastNameComparator = (doctor1, doctor2) -> doctor1.getLastname().compareTo(doctor2.getLastname());
-        Collections.sort(doctors, lastNameComparator);
-        System.out.println(doctors);
-        Comparator<Doctor> idComparator = (doctor1, doctor2) -> doctor1.getId().compareTo(doctor2.getId());
-        Collections.sort(doctors, lastNameComparator.thenComparing(idComparator));
-        System.out.println(doctors);
+        System.out.println(doctorList);
+        System.out.println(doctorList.getDoctorsLastNameBySpecializationsMapByStream());
 
-        Predicate<Doctor> doctorPredicate1 = new Predicate<Doctor>() {
-            @Override
-            public boolean test(Doctor doctor) {
-                return doctor.isLicense();
-            }
-        };
+//        PatientList patientList = new PatientList();
+//        patientList.addRandomPatients(10);
+//        System.out.println(patientList.getPatientCountByDiagnosisMapByStream());
+//        System.out.println(patientList.getPatientsLastNameByDiagnosisMapByStream());
 
-        Predicate<Doctor> doctorPredicate2 = (doctor) -> {
-            return doctor.isLicense();
-        };
 
-        doctors.removeIf(doctorPredicate1);
-        System.out.println(doctors);
 
-        Consumer<Doctor> doctorConsumer = System.out::println;
+//        Map<Product, Integer> maps = new HashMap<>();
+//        maps.put(new Product("apple", BigDecimal.valueOf(55.50)), 5);
+//        maps.put(new Product("orange", BigDecimal.valueOf(75.50)), 3);
+//        maps.put(new Product("strawberry", BigDecimal.valueOf(80.00)), 15);
+//        maps.forEach((product, pices) -> System.out.printf("%d %s %s \n", pices, product.getName(), product.getPrice().multiply(BigDecimal.valueOf(pices)).toString()));
+//        // 5 apple = 277,50
 
-        Supplier<Doctor> doctorSupplier = () -> new Doctor();
-        doctors.add(doctorSupplier.get());
-
-        doctors.forEach(doctorConsumer);
-
-        for (Doctor doctor : doctors) {
-            System.out.println(doctor);
-        }
-
-        doctors.replaceAll(doctor -> {
-            doctor.setLicense(false);
-            return doctor;
-        });
-
-        BiConsumer<Patient, Doctor> petientDoctorBiConsumer = (patient, doctor) -> {
-            System.out.println(patient);
-            System.out.println(doctor);
-        };
-
-        BiConsumer<Patient, Doctor> petientDoctorBiConsumer1 = new BiConsumer<Patient, Doctor>() {
-            @Override
-            public void accept(Patient patient, Doctor doctor) {
-                System.out.println(patient);
-                System.out.println(doctor);
-
-            }
-        };
+//        DoctorList doctorList = new DoctorList();
+//        doctorList.addRandomDoctors(10);
+//        List<Doctor> doctors = doctorList.getAll();
+//        Comparator<Doctor> lastNameComparator = (doctor1, doctor2) -> doctor1.getLastname().compareTo(doctor2.getLastname());
+//        Collections.sort(doctors, lastNameComparator);
+//        System.out.println(doctors);
+//        Comparator<Doctor> idComparator = (doctor1, doctor2) -> doctor1.getId().compareTo(doctor2.getId());
+//        Collections.sort(doctors, lastNameComparator.thenComparing(idComparator));
+//        System.out.println(doctors);
+//
+//        Predicate<Doctor> doctorPredicate1 = new Predicate<Doctor>() {
+//            @Override
+//            public boolean test(Doctor doctor) {
+//                return doctor.isLicense();
+//            }
+//        };
+//
+//        Predicate<Doctor> doctorPredicate2 = (doctor) -> {
+//            return doctor.isLicense();
+//        };
+//
+//        doctors.removeIf(doctorPredicate1);
+//        System.out.println(doctors);
+//
+//        Consumer<Doctor> doctorConsumer = System.out::println;
+//
+//        Supplier<Doctor> doctorSupplier = () -> new Doctor();
+//        doctors.add(doctorSupplier.get());
+//
+//        doctors.forEach(doctorConsumer);
+//
+//        for (Doctor doctor : doctors) {
+//            System.out.println(doctor);
+//        }
+//
+//        doctors.replaceAll(doctor -> {
+//            doctor.setLicense(false);
+//            return doctor;
+//        });
+//
+//        BiConsumer<Patient, Doctor> petientDoctorBiConsumer = (patient, doctor) -> {
+//            System.out.println(patient);
+//            System.out.println(doctor);
+//        };
+//
+//        BiConsumer<Patient, Doctor> petientDoctorBiConsumer1 = new BiConsumer<Patient, Doctor>() {
+//            @Override
+//            public void accept(Patient patient, Doctor doctor) {
+//                System.out.println(patient);
+//                System.out.println(doctor);
+//
+//            }
+//        };
 
 //        PatientList patientList = new PatientList();
 //        patientList.addRandomPatients(10);
@@ -90,10 +102,10 @@ public class Main {
 //            System.out.println(patient);
 //        }
 //
-        DoctorList doctorList1 = new DoctorList();
-        doctorList.addRandomDoctors(10);
-        System.out.println(doctorList1);
-        System.out.println(doctorList1.getMapSpecializationDoctor());
+//        DoctorList doctorList1 = new DoctorList();
+//        doctorList.addRandomDoctors(10);
+//        System.out.println(doctorList1);
+//        System.out.println(doctorList1.getMapSpecializationDoctor());
 //        for (Doctor doctor : doctorList.filterBySpecialization()) {
 //            System.out.println(doctor);
 //        }
